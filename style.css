@@ -1,0 +1,234 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #54343e;
+    background: #fff5f7;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 280px;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.96), transparent 58%),
+        linear-gradient(145deg, #fff5f7, #fce4ec);
+}
+
+.page {
+    display: grid;
+    min-height: 100vh;
+    min-height: 100svh;
+    place-items: center;
+    padding: 24px 16px;
+}
+
+.scene {
+    position: relative;
+    display: grid;
+    width: min(100%, 680px);
+    height: min(76svh, 620px);
+    min-height: 460px;
+    place-items: center;
+}
+
+.envelope {
+    position: absolute;
+    bottom: 86px;
+    left: 50%;
+    width: min(86vw, 440px);
+    height: clamp(180px, 42vw, 260px);
+    transform: translateX(-50%);
+    filter: drop-shadow(0 16px 22px rgba(111, 53, 73, 0.16));
+}
+
+.envelope-back,
+.envelope-front,
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+}
+
+.envelope-back {
+    z-index: 1;
+    background: #f7b8cc;
+}
+
+.letter {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 12px;
+    width: min(90vw, 540px);
+    max-height: min(68svh, 420px);
+    min-height: 300px;
+    overflow-y: auto;
+    padding: clamp(22px, 5vw, 40px);
+    border: 1px solid rgba(220, 145, 169, 0.3);
+    border-radius: 18px;
+    background: #fffdfd;
+    box-shadow: 0 10px 32px rgba(111, 53, 73, 0.13);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.letter-content {
+    text-align: center;
+}
+
+.letter h1 {
+    margin: 0 0 20px;
+    color: #c64f76;
+    font-size: clamp(1.55rem, 5vw, 2.25rem);
+    line-height: 1.2;
+}
+
+.letter p {
+    margin: 0;
+    font-size: clamp(0.98rem, 2.8vw, 1.12rem);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.letter .signature {
+    margin-top: 20px;
+    color: #a44c69;
+    font-weight: 600;
+}
+
+.envelope-front {
+    z-index: 4;
+    background: #f4a6bf;
+    clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelope-flap {
+    z-index: 5;
+    background: #ec8eae;
+    clip-path: polygon(0 0, 100% 0, 50% 72%);
+    transform-origin: 50% 0;
+    backface-visibility: visible;
+}
+
+.envelope-trigger {
+    position: absolute;
+    z-index: 8;
+    inset: 0;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.envelope-trigger:focus-visible {
+    outline: 3px solid #9a3e62;
+    outline-offset: 6px;
+}
+
+.seal {
+    display: grid;
+    width: clamp(42px, 12vw, 56px);
+    aspect-ratio: 1;
+    place-items: center;
+    border: 3px solid rgba(255, 255, 255, 0.72);
+    border-radius: 50%;
+    background: #cf587e;
+    box-shadow: 0 3px 10px rgba(111, 53, 73, 0.2);
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.message-label {
+    position: absolute;
+    right: 12px;
+    bottom: 18px;
+    left: 12px;
+    margin: 0;
+    color: #795361;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    text-align: center;
+}
+
+.confetti-layer {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    top: -12px;
+    width: 8px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+@media (max-width: 420px) {
+    .scene {
+        height: 72svh;
+        min-height: 440px;
+    }
+
+    .envelope {
+        bottom: 76px;
+        width: min(88vw, 360px);
+        height: clamp(180px, 55vw, 220px);
+    }
+
+    .letter {
+        bottom: 8px;
+        min-height: 280px;
+        max-height: 66svh;
+        border-radius: 14px;
+    }
+
+    .message-label {
+        bottom: 12px;
+    }
+}
+
+@media (max-height: 560px) and (min-width: 421px) {
+    .page {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .scene {
+        height: 92svh;
+        min-height: 0;
+    }
+
+    .envelope {
+        bottom: 54px;
+        height: min(38svh, 210px);
+        min-height: 150px;
+    }
+
+    .letter {
+        bottom: 4px;
+        min-height: 240px;
+        max-height: 78svh;
+    }
+
+    .message-label {
+        bottom: 6px;
+    }
+}
